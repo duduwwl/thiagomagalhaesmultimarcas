@@ -1,0 +1,351 @@
+.arrow svg,
+.inline-arrow,
+.details-link svg,
+.pin-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+
+.arrow svg {
+  width: 15px;
+  height: 15px;
+}
+
+.details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.details-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.pin-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.car-image.full-frame img {
+  object-fit: contain;
+}
+
+/* Keep the navigation and footer within the dealership's black-and-gold identity. */
+.site-header {
+  max-width: none;
+  padding-inline: max(4%, calc((100% - 1320px) / 2));
+  background: #111;
+  color: #f7f3e9;
+  border-bottom: 1px solid #c6a25d;
+}
+
+.site-header nav a {
+  color: #e9e3d6;
+  transition: color 160ms ease;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
+  color: #d4b46f;
+}
+
+.instagram-link {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #c6a25d99;
+  border-radius: 50%;
+  color: #d4b46f;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.instagram-link:hover,
+.instagram-link:focus-visible {
+  border-color: #d4b46f;
+  background: #c6a25d1a;
+  color: #f3d998;
+}
+
+.instagram-link svg,
+.contact-button svg,
+.floating-whatsapp svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.instagram-link .instagram-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.contact-button {
+  flex: 0 0 auto;
+  background: #c6a25d;
+  color: #17130d;
+}
+
+.contact-button:hover,
+.contact-button:focus-visible {
+  background: #d7b86f;
+}
+
+.hero h1 {
+  max-width: 350px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.7rem, 4.2vw, 3.35rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-transform: none;
+}
+
+.hero-content {
+  max-width: 480px;
+  padding-inline: 4%;
+}
+
+.hero-copy {
+  max-width: 370px;
+}
+
+.hero-search {
+  width: min(100%, 350px);
+}
+
+.hero-search button {
+  gap: 8px;
+  padding: 6px 10px 6px 13px;
+  font-size: 14px;
+}
+
+.hero-search .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-search .arrow svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.2;
+}
+
+.store-photo > img {
+  object-position: center 58%;
+}
+
+.floating-whatsapp svg {
+  width: 25px;
+  height: 25px;
+  stroke-width: 1.7;
+}
+
+footer {
+  max-width: none;
+  padding-inline: max(5%, calc((100% - 1296px) / 2));
+  background: #111;
+  color: #eee8dc;
+  border-top: 1px solid #c6a25d;
+}
+
+footer > div {
+  color: #aaa49a;
+}
+
+footer a {
+  color: #e9e3d6;
+}
+
+footer a:hover,
+footer a:focus-visible {
+  color: #d4b46f;
+}
+
+footer .brand {
+  border-color: #c6a25d;
+}
+
+@media (max-width: 1023px) {
+  .site-header {
+    gap: 14px;
+  }
+
+  .site-header nav {
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  .contact-button {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+  }
+
+  .contact-button span {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-header {
+    gap: 10px;
+    padding-inline: 14px;
+  }
+
+  .instagram-link {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+  }
+
+  .contact-button {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    font-size: initial;
+  }
+
+  .contact-button svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .hero h1 {
+    max-width: 360px;
+    font-size: clamp(2.3rem, 8.5vw, 3.2rem);
+    line-height: 1.05;
+  }
+
+  .hero h1,
+  .hero-copy {
+    display: none;
+  }
+
+  .hero-content {
+    max-width: 440px;
+    padding-inline: 19px;
+  }
+
+  .hero-copy {
+    max-width: 360px;
+  }
+
+  .store-photo > img {
+    object-position: center center;
+  }
+
+  footer {
+    padding: 25px 16px;
+  }
+
+  footer > div {
+    color: #bdb6a9;
+  }
+
+  .hero-search button {
+    height: 38px;
+  }
+
+  .hero-search .arrow {
+    width: 20px;
+    height: 20px;
+  }
+
+  .car-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .car-image {
+    aspect-ratio: 4 / 3;
+    background: #e8e7e2;
+  }
+
+  .car-image img,
+  .dialog-hero img {
+    object-fit: contain;
+    background: #e8e7e2;
+  }
+
+  .car-image img {
+    padding: 5px;
+  }
+
+  .hero-search button {
+    letter-spacing: -0.01em;
+  }
+
+  .arrow {
+    width: 27px;
+    height: 27px;
+    font-size: 0;
+  }
+
+  .inline-arrow {
+    margin-left: 2px;
+  }
+}
+
+@media (max-width: 370px) {
+  .car-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .car-image {
+    aspect-ratio: 1 / 1;
+  }
+
+  .car-info {
+    padding: 9px;
+  }
+
+  .car-info h3 {
+    font-size: 13px;
+  }
+
+  .version {
+    font-size: 10px;
+  }
+
+  .car-meta {
+    gap: 6px 4px;
+    font-size: 9px;
+  }
+
+  .car-price {
+    align-items: center;
+    gap: 4px;
+  }
+
+  .car-price strong {
+    font-size: 14px;
+  }
+
+  .details-link {
+    gap: 1px;
+    font-size: 9px;
+  }
+
+  .details-link svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
