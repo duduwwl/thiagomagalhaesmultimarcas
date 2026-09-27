@@ -121,10 +121,6 @@
   padding-inline: 4%;
 }
 
-.hero-copy {
-  max-width: 370px;
-}
-
 .hero-search {
   width: min(100%, 350px);
 }
@@ -144,6 +140,74 @@
   width: 12px;
   height: 12px;
   stroke-width: 2.2;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-bg {
+  animation: hero-image-arrive 1.1s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.hero-content > * {
+  animation: hero-content-arrive .7s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.hero-content > :nth-child(2) { animation-delay: .08s; }
+.hero-content > :nth-child(3) { animation-delay: .15s; }
+
+@keyframes hero-image-arrive {
+  from { opacity: .65; transform: scale(1.035); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hero-content-arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.steps article {
+  grid-template-columns: 1fr;
+  padding: 17px 20px;
+  border-left: 2px solid #c6a25d;
+  border-radius: 0 14px 14px 0;
+  box-shadow: 0 8px 26px #00000008;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.steps article:hover {
+  transform: translateX(4px);
+  box-shadow: 0 12px 30px #00000012;
+}
+
+.steps h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.steps p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.motion-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .store-photo > img {
@@ -230,20 +294,25 @@ footer .brand {
     max-width: 360px;
     font-size: clamp(2.3rem, 8.5vw, 3.2rem);
     line-height: 1.05;
+    display: none;
   }
 
-  .hero h1,
-  .hero-copy {
-    display: none;
+  .hero {
+    min-height: clamp(430px, 58svh, 540px);
   }
 
   .hero-content {
     max-width: 440px;
+    min-height: inherit;
     padding-inline: 19px;
   }
 
-  .hero-copy {
-    max-width: 360px;
+  .hero-content > .location-pill {
+    margin-bottom: auto;
+  }
+
+  .steps article {
+    padding: 15px 17px;
   }
 
   .store-photo > img {
@@ -299,6 +368,22 @@ footer .brand {
 
   .inline-arrow {
     margin-left: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .motion-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }
 
