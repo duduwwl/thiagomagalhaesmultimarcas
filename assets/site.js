@@ -94,12 +94,26 @@ document.getElementById("query").addEventListener("input", showCars);
 document.getElementById("transmission").addEventListener("change", showCars);
 document.getElementById("min-price").addEventListener("input", showCars);
 document.getElementById("max-price").addEventListener("input", showCars);
-document.getElementById("hero-search").addEventListener("submit", event => { event.preventDefault(); document.getElementById("query").value = document.getElementById("hero-query").value; showCars(); document.getElementById("estoque").scrollIntoView({ behavior: "smooth" }); });
+document.getElementById("hero-search").addEventListener("submit", event => { event.preventDefault(); document.getElementById("query").value = document.getElementById("hero-query").value; showCars(); const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; document.getElementById("estoque").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); });
 document.querySelectorAll("#origin-filter button").forEach(button => button.addEventListener("click", () => { selectedOrigin = button.dataset.origin; document.querySelectorAll("#origin-filter button").forEach(item => item.classList.toggle("active", item === button)); showCars(); }));
 document.querySelectorAll("#category-filter button").forEach(button => button.addEventListener("click", () => { selectedCategory = button.dataset.category; document.querySelectorAll("#category-filter button").forEach(item => item.classList.toggle("active", item === button)); showCars(); }));
 document.getElementById("clear-filters").addEventListener("click", () => { document.getElementById("query").value = ""; document.getElementById("hero-query").value = ""; document.getElementById("transmission").value = "Todos"; document.getElementById("min-price").value = 40000; document.getElementById("max-price").value = 200000; selectedOrigin = "Todos"; selectedCategory = "Todos"; document.querySelectorAll("#origin-filter button,#category-filter button").forEach(item => item.classList.toggle("active", item.dataset.origin === "Todos" || item.dataset.category === "Todos")); showCars(); });
 grid.addEventListener("click", event => { const button = event.target.closest("[data-car-id]"); if (button) openCar(Number(button.dataset.carId)); });
 document.getElementById("dialog-close").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("motion-ready");
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll("[data-reveal]").forEach(element => revealObserver.observe(element));
+}
+
 showCars();
 
