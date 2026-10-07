@@ -1,0 +1,31 @@
+:root{--display:'Space Grotesk',Arial,sans-serif}
+
+.hero h1,.services h2,.visit h2,.section-heading h2{font-weight:600;letter-spacing:-.035em}
+.hero h1{font-size:clamp(52px,6vw,84px);line-height:.97}
+.services h2,.visit h2{font-size:clamp(52px,6vw,80px);line-height:.97}
+.section-heading h2{font-size:clamp(52px,6vw,80px);line-height:.93}
+.car-info h3{font-weight:600;letter-spacing:-.025em}
+.service-card h3,.modal-content h2{font-weight:600;letter-spacing:-.025em}
+.topline,.eyebrow,.filter-button,.car-badge,.visit-hours p{font-weight:600}
+
+.hero-visual:before{content:"";inset:7% -16% 0 5%;}
+.hero-monogram{position:absolute;z-index:1;right:-4%;top:4%;font-family:var(--display);font-size:clamp(230px,27vw,430px);font-weight:700;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(237,45,47,.34);transform:rotate(-7deg);pointer-events:none}
+.hero-visual img{object-fit:contain;background:#151619}
+
+.service-icon{font-size:0}
+.service-icon svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.visit-card{background:#d3d1cb;border:0;padding:0}
+.map-embed{display:block;width:100%;height:100%;min-height:430px;border:0;filter:grayscale(.25) contrast(1.05)}
+.map-label{position:absolute;z-index:2;left:18px;top:18px;background:rgba(11,12,14,.88);color:#fff;padding:12px 14px;font-family:var(--display);font-size:16px;font-weight:600;line-height:1.05;letter-spacing:.02em}
+.map-label small{display:block;color:#c5c6c8;font:500 10px var(--body);margin-top:5px}
+.visit-hours{width:56%}
+
+@media(max-width:680px){
+  .hero h1{font-size:58px}
+  .services h2,.visit h2,.section-heading h2{font-size:58px}
+  .hero-visual img{object-fit:contain}
+  .hero-monogram{font-size:230px;right:-8%}
+  .map-embed{min-height:365px}
+  .visit-hours{width:78%}
+}
