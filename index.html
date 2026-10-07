@@ -49,11 +49,16 @@
             <a href="https://www.instagram.com/megamultimarcaslavras/" target="_blank" rel="noreferrer">@megamultimarcaslavras</a>
           </div>
         </div>
-        <div class="hero-visual" aria-label="Volkswagen Polo preto em destaque">
+        <div class="hero-visual" id="hero-carousel" role="region" aria-roledescription="carrossel" aria-label="Carros em destaque">
           <span class="hero-monogram" aria-hidden="true">M</span>
           <div class="hero-stamp"><span>MEGA</span><small>SEMINOVOS</small></div>
-          <img src="https://raw.githubusercontent.com/duduwwl/thiagomagalhaesmultimarcas/main/assets/car-01-polo-black-front.png" alt="Volkswagen Polo preto visto de frente" />
-          <div class="hero-caption"><span>DESTAQUE DA SEMANA</span><strong>Volkswagen Polo</strong></div>
+          <div class="hero-carousel-frame">
+            <img id="hero-image" src="https://raw.githubusercontent.com/duduwwl/thiagomagalhaesmultimarcas/main/assets/car-01-polo-black-front.png" alt="Volkswagen Polo preto visto de frente" />
+          </div>
+          <button class="hero-carousel-control previous" id="hero-prev" type="button" aria-label="Carro anterior">‹</button>
+          <button class="hero-carousel-control next" id="hero-next" type="button" aria-label="Próximo carro">›</button>
+          <div class="hero-caption" aria-live="polite"><span id="hero-caption-label">DESTAQUE 1 DE 6 · HATCH</span><strong id="hero-caption-name">Volkswagen Polo</strong></div>
+          <div class="hero-carousel-dots" id="hero-carousel-dots" role="tablist" aria-label="Escolher carro em destaque"></div>
         </div>
       </section>
 

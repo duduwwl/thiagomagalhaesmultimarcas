@@ -14,9 +14,53 @@ const search = document.querySelector('#inventory-search');
 const count = document.querySelector('#inventory-count');
 const empty = document.querySelector('#empty-state');
 const modal = document.querySelector('#car-modal');
+const heroCarousel = document.querySelector('#hero-carousel');
+const heroImage = document.querySelector('#hero-image');
+const heroCaptionLabel = document.querySelector('#hero-caption-label');
+const heroCaptionName = document.querySelector('#hero-caption-name');
+const heroDots = document.querySelector('#hero-carousel-dots');
+let heroIndex = 0;
+let heroTimer;
 let activeFilter = 'all';
 let activeCar = null;
 let activeImage = 0;
+
+function renderHero(index, animate = true){
+  heroIndex = (index + cars.length) % cars.length;
+  const car = cars[heroIndex];
+  if(animate) heroCarousel.querySelector('.hero-carousel-frame').classList.add('is-changing');
+  window.setTimeout(() => {
+    heroImage.src = car.images[0];
+    heroImage.alt = `${car.brand} ${car.name} em destaque`;
+    heroCaptionLabel.textContent = `DESTAQUE ${heroIndex + 1} DE ${cars.length} · ${car.category.toUpperCase()}`;
+    heroCaptionName.textContent = `${car.brand} ${car.name}`;
+    heroCarousel.setAttribute('aria-label', `${car.brand} ${car.name} em destaque`);
+    heroDots.querySelectorAll('button').forEach((dot, i) => {
+      dot.classList.toggle('active', i === heroIndex);
+      dot.setAttribute('aria-selected', String(i === heroIndex));
+    });
+    heroCarousel.querySelector('.hero-carousel-frame').classList.remove('is-changing');
+  }, animate ? 140 : 0);
+}
+
+function startHeroTimer(){
+  window.clearInterval(heroTimer);
+  heroTimer = window.setInterval(() => renderHero(heroIndex + 1), 4800);
+}
+
+heroDots.innerHTML = cars.map((car, i) => `<button type="button" role="tab" class="${i === 0 ? 'active' : ''}" aria-label="Mostrar ${car.brand} ${car.name}" aria-selected="${i === 0}" data-hero-index="${i}"></button>`).join('');
+heroDots.querySelectorAll('[data-hero-index]').forEach(dot => dot.addEventListener('click', () => { renderHero(Number(dot.dataset.heroIndex)); startHeroTimer(); }));
+document.querySelector('#hero-prev').addEventListener('click', () => { renderHero(heroIndex - 1); startHeroTimer(); });
+document.querySelector('#hero-next').addEventListener('click', () => { renderHero(heroIndex + 1); startHeroTimer(); });
+heroCarousel.addEventListener('mouseenter', () => window.clearInterval(heroTimer));
+heroCarousel.addEventListener('mouseleave', startHeroTimer);
+heroCarousel.addEventListener('focusin', () => window.clearInterval(heroTimer));
+heroCarousel.addEventListener('focusout', e => { if(!heroCarousel.contains(e.relatedTarget)) startHeroTimer(); });
+let heroTouchStart = 0;
+heroCarousel.addEventListener('touchstart', e => { heroTouchStart = e.changedTouches[0].clientX; }, {passive:true});
+heroCarousel.addEventListener('touchend', e => { const delta = e.changedTouches[0].clientX - heroTouchStart; if(Math.abs(delta) > 45){ renderHero(heroIndex + (delta < 0 ? 1 : -1)); startHeroTimer(); } }, {passive:true});
+document.addEventListener('visibilitychange', () => document.hidden ? window.clearInterval(heroTimer) : startHeroTimer());
+startHeroTimer();
 
 function cardTemplate(car){
   return `<article class="car-card" data-car-id="${car.id}" tabindex="0" role="button" aria-label="Ver detalhes de ${car.brand} ${car.name}">
